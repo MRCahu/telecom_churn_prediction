@@ -1,10 +1,12 @@
 from pathlib import Path
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+from sklearn.pipeline import Pipeline
+import json
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -21,16 +23,51 @@ y = df["Churn_Yes"]
 # Dividir os dados em treino e teste
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
 
-# Normalização dos dados para modelos sensíveis à escala
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+# Configuração de validação cruzada estratificada
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 
-# Modelos
-# 1. Regressão Logística (sensível à escala)
-log_reg_model = LogisticRegression(random_state=42, solver='liblinear')
-log_reg_model.fit(X_train_scaled, y_train)
-y_pred_log_reg = log_reg_model.predict(X_test_scaled)
+# Pipeline para Regressão Logística com normalização
+log_reg_pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('log_reg', LogisticRegression(random_state=42, solver='liblinear'))
+])
+
+# Avaliação basal com cross_val_score
+baseline_scores = cross_val_score(
+    log_reg_pipeline, X_train, y_train, cv=cv, scoring='f1')
+print(f"F1-Score médio (CV) - Regressão Logística: {baseline_scores.mean():.4f}")
+
+pd.DataFrame({
+    'fold': np.arange(1, len(baseline_scores) + 1),
+    'f1_score': baseline_scores
+}).to_csv(
+    '/home/ubuntu/telecom_churn_prediction/reports/baseline_cv_scores.csv',
+    index=False)
+
+# GridSearchCV para otimização de hiperparâmetros da Regressão Logística
+param_grid = {
+    'log_reg__C': [0.01, 0.1, 1, 10],
+    'log_reg__penalty': ['l1', 'l2']
+}
+grid_search = GridSearchCV(
+    log_reg_pipeline,
+    param_grid,
+    cv=cv,
+    scoring='f1',
+    n_jobs=-1
+)
+grid_search.fit(X_train, y_train)
+best_log_reg_model = grid_search.best_estimator_
+y_pred_log_reg = best_log_reg_model.predict(X_test)
+
+cv_results = pd.DataFrame(grid_search.cv_results_)
+cv_results.to_csv(
+    '/home/ubuntu/telecom_churn_prediction/reports/gridsearch_logistic_regression_results.csv',
+    index=False)
+with open('/home/ubuntu/telecom_churn_prediction/reports/gridsearch_logistic_regression_best_params.json', 'w') as f:
+    json.dump(grid_search.best_params_, f, indent=2)
+
+# Modelo Random Forest (não sensível à escala)
 
 # 2. Random Forest (não sensível à escala)
 rf_model = RandomForestClassifier(random_state=42)
@@ -67,7 +104,7 @@ print("\nRegressão Logística - Top 10 Coeficientes (Importância):")
 feature_names = X.columns
 log_reg_coef = pd.DataFrame({
     'Feature': feature_names,
-    'Coefficient': log_reg_model.coef_[0]
+    'Coefficient': best_log_reg_model.named_steps['log_reg'].coef_[0]
 })
 log_reg_coef['Abs_Coefficient'] = np.abs(log_reg_coef['Coefficient'])
 log_reg_coef_sorted = log_reg_coef.sort_values('Abs_Coefficient', ascending=False)
