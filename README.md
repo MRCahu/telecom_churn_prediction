@@ -113,7 +113,7 @@ pytest
 | Random Forest       | 0.7950   | 0.5712   |
 | KNN                 | 0.7431   | 0.4846   |
 
-📄 Arquivo com os resultados: [`models_comparison.csv`](reports/models_comparison.csv)
+📄 Arquivo com os resultados: [![models_comparison.csv](reports/models_comparison.csv)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/models_comparison.csv)
 
 ---
 
