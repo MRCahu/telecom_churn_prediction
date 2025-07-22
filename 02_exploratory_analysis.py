@@ -65,6 +65,19 @@ plt.tight_layout()
 plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/exploratory_analysis.png', dpi=300, bbox_inches='tight')
 plt.show()
 
+# Distribuição de churn por tipo de contrato
+contract_type = np.where(df['Contract_One year'] == 1, 'One year',
+                         np.where(df['Contract_Two year'] == 1, 'Two year', 'Month-to-month'))
+contract_churn = pd.crosstab(contract_type, df['Churn_Yes'], normalize='index')
+contract_churn.plot(kind='bar', stacked=True, figsize=(6, 4))
+plt.xlabel('Tipo de Contrato')
+plt.ylabel('Proporção')
+plt.title('Distribuição de Churn por Tipo de Contrato')
+plt.legend(['Não Churn', 'Churn'], loc='upper right')
+plt.tight_layout()
+plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/churn_by_contract.png', dpi=300, bbox_inches='tight')
+plt.show()
+
 # Estatísticas descritivas por grupo de churn
 print("\nEstatísticas descritivas por grupo de churn:")
 print("\nNão Churn (0):")

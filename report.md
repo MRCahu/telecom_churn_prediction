@@ -46,6 +46,12 @@ A conversão de tipos de dados foi realizada com particular atenção à coluna 
 
 Para a codificação de variáveis categóricas, implementamos one-hot encoding através da função `pd.get_dummies()` com o parâmetro `drop_first=True` para evitar multicolinearidade. Esta abordagem criou variáveis binárias para cada categoria, permitindo que algoritmos de Machine Learning processem adequadamente as informações categóricas.
 
+**Insights do pré-processamento**
+
+- Estruturas JSON aninhadas foram convertidas em formato tabular, facilitando a análise.
+- Valores ausentes e dados inconsistentes em `TotalCharges` foram tratados para manter a confiabilidade estatística.
+- A codificação categorórica gerou um conjunto de dados final pronto para os modelos de machine learning.
+
 ### 2.3 Análise Exploratória
 
 A análise exploratória foi conduzida com foco na compreensão da distribuição da variável target e na identificação de padrões nos dados. Calculamos a proporção de churn, revelando um desequilíbrio moderado com 25,72% dos clientes apresentando evasão e 74,28% permanecendo ativos.
@@ -53,6 +59,12 @@ A análise exploratória foi conduzida com foco na compreensão da distribuiçã
 A análise de correlação foi realizada através da matriz de correlação de Pearson, permitindo identificar as relações lineares entre variáveis numéricas e a variável target. Visualizações específicas foram criadas para examinar a distribuição de variáveis-chave como MonthlyCharges e tenure em relação ao status de churn.
 
 Estatísticas descritivas foram calculadas separadamente para grupos de clientes com e sem churn, revelando diferenças significativas em características como tempo de permanência, valores de cobrança e perfil demográfico. Esta análise forneceu insights preliminares sobre os fatores potencialmente associados à evasão de clientes.
+
+**Insights da análise exploratória**
+
+- A distribuição de churn variou de forma expressiva entre os tipos de contrato, conforme ilustrado na figura `churn_by_contract.png`.
+- `MonthlyCharges` e `tenure` apresentaram relações distintas com o churn, sugerindo perfis de risco específicos.
+- O desequilíbrio da classe reforça a necessidade de métricas além da acurácia para avaliar os modelos.
 
 ### 2.4 Desenvolvimento de Modelos
 
@@ -91,6 +103,12 @@ Conforme os resultados, o modelo de **Regressão Logística** apresentou um dese
 O modelo **Random Forest**, embora robusto, obteve resultados um pouco inferiores, com acurácia de 78.40% e F1-Score de 0.5332. Isso pode indicar que, para este conjunto de dados e a forma como as features foram engenheiradas, a relação linear capturada pela Regressão Logística, combinada com a normalização, foi mais eficaz na distinção entre clientes que evadem e os que não evadem.
 
 Ambos os modelos não demonstraram sinais claros de overfitting ou underfitting severos, pois o desempenho no conjunto de teste foi razoavelmente próximo ao esperado com base no treinamento. O desbalanceamento da classe (74.28% Não Churn vs. 25.72% Churn) foi considerado, e as métricas de precisão, recall e F1-Score são mais indicativas do desempenho real em cenários de desbalanceamento do que apenas a acurácia.
+
+**Insights da avaliação dos modelos**
+
+- A Regressão Logística apresentou melhor equilíbrio geral e maior área sob a curva na figura `roc_curves.png`.
+- A diferença de desempenho entre os modelos é pequena, mas a interpretabilidade da Regressão Logística facilita a implementação.
+- Monitorar as métricas de AUC e F1-Score auxilia na escolha do modelo mais adequado para o negócio.
 
 ### 3.2 Análise da Importância das Variáveis
 
