@@ -1,40 +1,34 @@
 # Previsão de Churn na Telecom X
 
-Este projeto tem como objetivo desenvolver modelos de Machine Learning para prever a evasão (churn) de clientes da Telecom X. A análise e modelagem são baseadas em dados históricos de clientes, buscando identificar os principais fatores que influenciam o churn e propor estratégias de retenção.
+Este projeto visa prever a evasão de clientes utilizando dados históricos da Telecom X. O dataset `TelecomX_Data.json` contém registros de 7.267 clientes em formato JSON hierárquico, processado para aplicação de modelos de Machine Learning.
 
 ## Estrutura do Projeto
+- `data/` - dados brutos e processados
+- `notebooks/` - scripts de pré-processamento e modelagem
+- `models/` - modelos treinados
+- `reports/` - relatórios e figuras
 
-- `data/`: Contém os dados brutos e processados.
-- `notebooks/`: Scripts Python para pré-processamento, análise exploratória e desenvolvimento de modelos.
-- `models/`: Modelos de Machine Learning treinados (serão salvos aqui).
-- `reports/`: Relatórios, gráficos e resultados da análise e avaliação dos modelos.
+## Criação do Ambiente
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## Tecnologias Utilizadas
+## Execução
+```bash
+python notebooks/01_data_preprocessing.py
+python notebooks/02_exploratory_analysis.py
+python notebooks/03_model_development.py
+pytest
+```
 
-- Python
-- Pandas (para manipulação de dados)
-- Scikit-learn (para Machine Learning)
-- Matplotlib e Seaborn (para visualização de dados)
+## Métricas Finais
+A **Regressão Logística** obteve acurácia de **0.8010** e F1-Score de **0.5795** no conjunto de teste.
 
-## Como Executar o Projeto
+## Figuras Principais
+![Matriz de Confusão](telecom_churn_prediction_project/telecom_churn_prediction/reports/confusion_matrix_Regressão_Logística.png)
 
-1. Clone este repositório:
-   `git clone <URL_DO_REPOSITORIO>`
-2. Navegue até o diretório do projeto:
-   `cd telecom_churn_prediction`
-3. Instale as dependências (se necessário):
-   `pip install -r requirements.txt` (o arquivo `requirements.txt` será criado posteriormente)
-4. Execute os scripts na ordem:
-   - `notebooks/01_data_preprocessing.py`
-   - `notebooks/02_exploratory_analysis.py`
-   - `notebooks/03_model_development.py`
+![Importância das Features](telecom_churn_prediction_project/telecom_churn_prediction/reports/feature_importance.png)
 
-## Resultados e Análises
-
-Os resultados detalhados da análise exploratória, avaliação dos modelos e importância das variáveis podem ser encontrados no `reports/report.md`.
-
-## Contato
-
-Para dúvidas ou sugestões, entre em contato.
-
-
+Detalhes adicionais estão em `reports/report.md`.
