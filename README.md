@@ -15,6 +15,12 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Testes
+Para executar a suíte de testes, utilize:
+```bash
+pytest
+```
+
 ## Execução
 Após ativar o ambiente, execute:
 ```bash
