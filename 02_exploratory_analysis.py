@@ -6,6 +6,9 @@ import numpy as np
 
 from src.utils import get_project_root
 
+reports_dir = get_project_root() / "reports"
+reports_dir.mkdir(parents=True, exist_ok=True)
+
 # Carregar os dados processados
 df = pd.read_csv(get_project_root() / "data" / "processed_data.csv")
 
@@ -65,7 +68,7 @@ plt.title('Distribuição de Tenure por Churn')
 plt.legend()
 
 plt.tight_layout()
-plt.savefig(get_project_root() / "reports" / "exploratory_analysis.png", dpi=300, bbox_inches='tight')
+plt.savefig(reports_dir / "exploratory_analysis.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Distribuição de churn por tipo de contrato
@@ -78,7 +81,7 @@ plt.ylabel('Proporção')
 plt.title('Distribuição de Churn por Tipo de Contrato')
 plt.legend(['Não Churn', 'Churn'], loc='upper right')
 plt.tight_layout()
-plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/churn_by_contract.png', dpi=300, bbox_inches='tight')
+plt.savefig(reports_dir / "churn_by_contract.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Estatísticas descritivas por grupo de churn
