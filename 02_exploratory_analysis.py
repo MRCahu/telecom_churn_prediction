@@ -1,10 +1,13 @@
+from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+from src.utils import get_project_root
+
 # Carregar os dados processados
-df = pd.read_csv('/home/ubuntu/telecom_churn_prediction/data/processed_data.csv')
+df = pd.read_csv(get_project_root() / "data" / "processed_data.csv")
 
 # Verificar a proporção de churn
 churn_counts = df['Churn_Yes'].value_counts()
@@ -62,7 +65,7 @@ plt.title('Distribuição de Tenure por Churn')
 plt.legend()
 
 plt.tight_layout()
-plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/exploratory_analysis.png', dpi=300, bbox_inches='tight')
+plt.savefig(get_project_root() / "reports" / "exploratory_analysis.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Estatísticas descritivas por grupo de churn
@@ -77,4 +80,3 @@ print("\nTop 15 correlações com Churn:")
 print(churn_corr.head(15))
 print("\nBottom 15 correlações com Churn:")
 print(churn_corr.tail(15))
-

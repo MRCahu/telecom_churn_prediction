@@ -1,8 +1,11 @@
+from pathlib import Path
 import pandas as pd
 
+from src.utils import get_project_root
+
 # Carregar os dados
-file_path = '/home/ubuntu/telecom_churn_prediction/data/TelecomX_Data.json'
-df = pd.read_json(file_path)
+data_path = get_project_root() / "data" / "TelecomX_Data.json"
+df = pd.read_json(data_path)
 
 # Achatando as colunas aninhadas
 def flatten_json_col(df, col_name):
@@ -42,8 +45,7 @@ print("Primeiras 5 linhas do DataFrame processado:")
 print(df_encoded.head().to_markdown(index=False, numalign='left', stralign='left'))
 
 # Salvar o dataframe processado
-df_encoded.to_csv('/home/ubuntu/telecom_churn_prediction/data/processed_data.csv', index=False)
+processed_path = get_project_root() / "data" / "processed_data.csv"
+df_encoded.to_csv(processed_path, index=False)
 
-print("\nDataFrame processado e salvo em /home/ubuntu/telecom_churn_prediction/data/processed_data.csv")
-
-
+print(f"\nDataFrame processado e salvo em {processed_path}")
