@@ -1,6 +1,6 @@
 # Relatório de Previsão de Churn na Telecom X
 
-**Autor:** Manus AI  
+**Autor:** Mauro Cahu  
 **Data:** Janeiro 2025  
 **Projeto:** Telecom X - Parte 2: Prevendo Churn
 
