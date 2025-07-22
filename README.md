@@ -121,19 +121,19 @@ pytest
 
 ### Matriz de Confusão – Regressão Logística
 
-![Matriz Logística](reports/confusion_matrix_logistica.png)
+[![Matriz Logística](reports/confusion_matrix_logistica.png)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/confusion_matrix_logistic.png)
 
 ### Matriz de Confusão – Random Forest
 
-![Matriz RF](reports/confusion_matrix_random_forest.png)
+[![Matriz RF](reports/confusion_matrix_random_forest.png)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/confusion_matrix_Random_Forest.png)
 
 ### Importância das Variáveis
 
-![Importância](reports/feature_importance.png)
+[![Importância](reports/feature_importance.png)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/feature_importance.png)
 
 ### Análise Exploratória
 
-![EDA](reports/exploratory_analysis.png)
+[![EDA](reports/exploratory_analysis.png)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/exploratory_analysis.png)
 
 📘 Relatório completo: [`report.md`](reports/report.md)
 
