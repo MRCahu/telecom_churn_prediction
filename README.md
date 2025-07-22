@@ -12,6 +12,7 @@ Este projeto tem como objetivo prever a evasão (churn) de clientes da Telecom X
 ```bash
 python -m venv .venv
 source .venv/bin/activate
+# instale as dependências a partir do arquivo na raiz do projeto
 pip install -r requirements.txt
 ```
 
