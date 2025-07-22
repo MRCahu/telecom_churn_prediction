@@ -1,3 +1,4 @@
+from pathlib import Path
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -8,8 +9,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+from src.utils import get_project_root
+
 # Carregar os dados processados
-df = pd.read_csv("/home/ubuntu/telecom_churn_prediction/data/processed_data.csv")
+df = pd.read_csv(get_project_root() / "data" / "processed_data.csv")
 
 # Separar features (X) e target (y)
 X = df.drop("Churn_Yes", axis=1)
@@ -49,7 +52,7 @@ def evaluate_model(model_name, y_true, y_pred):
     plt.title(f'Matriz de Confusão - {model_name}')
     plt.xlabel('Previsto')
     plt.ylabel('Real')
-    plt.savefig(f'/home/ubuntu/telecom_churn_prediction/reports/confusion_matrix_{model_name.replace(" ", "_")}.png', dpi=300, bbox_inches='tight')
+    plt.savefig(get_project_root() / "reports" / f"confusion_matrix_{model_name.replace(' ', '_')}.png", dpi=300, bbox_inches='tight')
     plt.show()
 
 # Avaliar os modelos
@@ -101,7 +104,7 @@ plt.title('Top 10 Variáveis Mais Importantes - Random Forest')
 plt.gca().invert_yaxis()
 
 plt.tight_layout()
-plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/feature_importance.png', dpi=300, bbox_inches='tight')
+plt.savefig(get_project_root() / "reports" / "feature_importance.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Comparação dos modelos
@@ -116,9 +119,10 @@ models_comparison = pd.DataFrame({
 print(models_comparison)
 
 # Salvar os resultados
-models_comparison.to_csv('/home/ubuntu/telecom_churn_prediction/reports/models_comparison.csv', index=False)
-log_reg_coef_sorted.to_csv('/home/ubuntu/telecom_churn_prediction/reports/logistic_regression_coefficients.csv', index=False)
-rf_importance_sorted.to_csv('/home/ubuntu/telecom_churn_prediction/reports/random_forest_importance.csv', index=False)
+reports_dir = get_project_root() / "reports"
+models_comparison.to_csv(reports_dir / "models_comparison.csv", index=False)
+log_reg_coef_sorted.to_csv(reports_dir / "logistic_regression_coefficients.csv", index=False)
+rf_importance_sorted.to_csv(reports_dir / "random_forest_importance.csv", index=False)
 
-print("\nResultados salvos em /home/ubuntu/telecom_churn_prediction/reports/")
+print(f"\nResultados salvos em {reports_dir}")
 
