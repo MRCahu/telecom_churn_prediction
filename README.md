@@ -121,11 +121,11 @@ pytest
 
 ### Matriz de Confusão – Regressão Logística
 
-![Matriz Logística](reports/confusion_matrix_Regressão_Logística.png)
+![Matriz Logística](reports/confusion_matrix_logistica.png)
 
 ### Matriz de Confusão – Random Forest
 
-![Matriz RF](reports/confusion_matrix_Random_Forest.png)
+![Matriz RF](reports/confusion_matrix_random_forest.png)
 
 ### Importância das Variáveis
 
