@@ -12,7 +12,8 @@ Este projeto visa prever a evasão de clientes utilizando dados históricos da T
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+# instale as dependências utilizando o arquivo na raiz do repositório
+pip install -r ../../requirements.txt
 ```
 
 ## Execução
