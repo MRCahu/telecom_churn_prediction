@@ -1,0 +1,148 @@
+Telecom X – Parte 2: Prevendo Churn
+
+📣 História do Desafio
+
+Parabéns! 🎉 Você foi promovido após seu excelente desempenho na análise exploratória da evasão de clientes na Telecom X. Sua dedicação, clareza na comunicação dos dados e visão estratégica fizeram a diferença.
+
+Agora, você foi convidado a integrar oficialmente a equipe de Machine Learning da empresa!
+
+🎯 Missão
+
+Sua nova missão é desenvolver modelos preditivos capazes de prever quais clientes têm maior chance de cancelar seus serviços.
+
+A empresa quer antecipar o problema da evasão, e cabe a você construir um pipeline robusto para essa etapa inicial de modelagem.
+
+🧠 Objetivos do Desafio
+
+Preparar os dados para a modelagem (tratamento, encoding, normalização).
+
+Realizar análise de correlação e seleção de variáveis.
+
+Treinar dois ou mais modelos de classificação.
+
+Avaliar o desempenho dos modelos com métricas.
+
+Interpretar os resultados, incluindo a importância das variáveis.
+
+Criar uma conclusão estratégica apontando os principais fatores que influenciam a evasão.
+
+🧰 O que você vai praticar
+
+✅ Pré-processamento de dados para Machine Learning
+✅ Construção e avaliação de modelos preditivos
+✅ Interpretação dos resultados e entrega de insights
+✅ Comunicação técnica com foco estratégico
+
+🚀 Você agora é: Analista de Machine Learning Júnior
+
+A Telecom X está confiando na sua entrega para dar os próximos passos em direção a uma solução de inteligência preditiva eficaz. Boa sorte!
+
+No desenvolvimento de projetos, sabemos como é essencial organizar seu trabalho desde o início. Por isso, neste desafio, você deverá criar um repositório no GitHub para armazenar e versionar seu projeto.
+
+Mesmo que você ainda não tenha desenvolvido nenhum código, o objetivo é que você crie uma estrutura inicial para o projeto. À medida que avançar, você poderá atualizar e adicionar arquivos ao repositório.
+
+Materiais de Apoio
+Se precisar de ajuda, confira os seguintes recursos:
+
+https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-Configura%C3%A7%C3%A3o-Inicial-do-Git
+
+https://www.alura.com.br/artigos/iniciando-repositorio-git?srsltid=AfmBOorPwqQUhHG3A3VaTH5KtGJA10qcvMMpnYFDojw9lMSaS9natUVX
+
+Organizar seu projeto desde o início facilita o desenvolvimento e garante boas práticas no controle de versões! 🚀
+
+
+Carregue o arquivo CSV que contém os dados tratados anteriormente.
+📂 Atenção: Utilize o mesmo arquivo que você limpou e organizou na parte 1 do desafio Telecom X. Ele deve conter somente as colunas relevantes, já com os dados corrigidos e padronizados.
+
+Elimine colunas que não trazem valor para a análise ou para os modelos preditivos, como identificadores únicos (por exemplo, o ID do cliente). Essas colunas não ajudam na previsão da evasão e podem até prejudicar o desempenho dos modelos.
+
+Transforme as variáveis categóricas em formato numérico para torná-las compatíveis com algoritmos de machine learning. Utilize um método de codificação adequado, como o one-hot encoding.
+
+Dicas:
+
+https://www.alura.com.br/artigos/get-dummies-vs-onehotencoder-qual-metodo-escolher?utm_term=&utm_campaign=topo-aon-search-gg-dsa-artigos_conteudos&utm_source=google&utm_medium=cpc&campaign_id=11384329873_164212380672_703829166693&utm_id=11384329873_164212380672_703829166693&hsa_acc=7964138385&hsa_cam=topo-aon-search-gg-dsa-artigos_conteudos&hsa_grp=164212380672&hsa_ad=703829166693&hsa_src=g&hsa_tgt=aud-527303763294:dsa-425656816943&hsa_kw=&hsa_mt=&hsa_net=google&hsa_ver=3&gad_source=1&gad_campaignid=11384329873&gclid=CjwKCAjwz_bABhAGEiwAm-P8YcX5MR72F94-IuQpgazH03079qa2AYVScM4YseUiH-6yqcctRGwHuRoCLq4QAvD_BwE
+
+Calcule a proporção de clientes que evadiram em relação aos que permaneceram ativos. Avalie se há desequilíbrio entre as classes, o que pode impactar modelos preditivos e a análise de resultados.
+
+Dicas:
+
+https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.value_counts.html
+
+Caso queira aprofundar a análise, aplique técnicas de balanceamento como undersampling ou oversampling. Em situações de forte desbalanceamento, ferramentas como o SMOTE podem ser úteis para gerar exemplos sintéticos da classe minoritária.
+
+Dicas:
+
+https://www.alura.com.br/artigos/lidando-com-desbalanceamento-dados?srsltid=AfmBOopTgyC_tpujwkC778gYjcLituqgxknih2Cr4vD72_OFHSB4v35M
+
+
+Avalie a necessidade de normalizar ou padronizar os dados, conforme os modelos que serão aplicados.
+Modelos baseados em distância, como KNN, SVM, Regressão Logística e Redes Neurais, requerem esse pré-processamento.
+Já modelos baseados em árvore, como Decision Tree, Random Forest e XGBoost, não são sensíveis à escala dos dados.
+
+
+
+Dicas:
+
+https://medium.com/ipnet-growth-partner/padronizacao-normalizacao-dados-machine-learning-f8f29246c12
+
+
+Visualize a matriz de correlação para identificar relações entre variáveis numéricas. Observe especialmente quais variáveis apresentam maior correlação com a evasão, pois elas podem ser fortes candidatas para o modelo preditivo.
+
+Investigue como variáveis específicas se relacionam com a evasão, como:
+
+Tempo de contrato × Evasão
+
+Total gasto × Evasão
+
+Utilize gráficos como boxplots ou dispersão (scatter plots) para visualizar padrões e possíveis tendências.
+
+Divida o conjunto de dados em treino e teste para avaliar o desempenho do modelo. Uma divisão comum é 70% para treino e 30% para teste, ou 80/20, dependendo do tamanho da base de dados.
+
+Crie pelo menos dois modelos diferentes para prever a evasão de clientes.
+
+Um modelo pode exigir normalização, como Regressão Logística ou KNN.
+
+O outro modelo pode não exigir normalização, como Árvore de Decisão ou Random Forest.
+
+💡 A escolha de aplicar ou não a normalização depende dos modelos selecionados. Ambos os modelos podem ser criados sem normalização, mas a combinação de modelos com e sem normalização também é uma opção.
+
+Justifique a escolha de cada modelo e, se optar por normalizar os dados, explique a necessidade dessa etapa.
+
+Avalie cada modelo utilizando as seguintes métricas:
+
+Acurácia
+
+Precisão
+
+Recall
+
+F1-score
+
+Matriz de confusão
+
+Em seguida, faça uma análise crítica e compare os modelos:
+
+Qual modelo teve o melhor desempenho?
+
+Algum modelo apresentou overfitting ou underfitting? Se sim, considere as possíveis causas e ajustes:
+
+Overfitting: Quando o modelo aprende demais sobre os dados de treino, perdendo a capacidade de generalizar para novos dados. Considere reduzir a complexidade do modelo ou aumentar os dados de treino.
+
+Underfitting: Quando o modelo não captura bem as tendências dos dados, indicando que está muito simples. Tente aumentar a complexidade do modelo ou ajustar seus parâmetros.
+
+Após escolher os modelos, realize a análise das variáveis mais relevantes para a previsão de evasão:
+
+Regressão Logística:  investigue os coeficientes das variáveis, que mostram sua contribuição para a previsão de evasão.
+
+KNN (K-Nearest Neighbors): Observe como os vizinhos mais próximos influenciam a decisão de classificação. As variáveis mais impactantes podem ser aquelas que mais contribuem para a proximidade entre os pontos de dados.
+
+Random Forest: Utilize a importância das variáveis fornecida pelo modelo. O Random Forest calcula a importância com base em como cada variável contribui para a redução da impureza durante as divisões das árvores.
+
+SVM (Support Vector Machine): No SVM, as variáveis mais relevantes são aquelas que influenciam a fronteira de decisão entre as classes. Você pode analisar os coeficientes dos vetores de suporte para entender quais variáveis têm maior impacto.
+
+Outros Modelos: Dependendo do modelo escolhido, considere a análise de métricas específicas para entender a relevância das variáveis. Por exemplo, coeficientes em modelos lineares, pesos em redes neurais, ou importância relativa em boosting (como XGBoost).
+
+Elaborem um relatório detalhado, destacando os fatores que mais influenciam a evasão, com base nas variáveis selecionadas e no desempenho de cada modelo.
+
+Identifiquem os principais fatores que afetam a evasão de clientes e proponham estratégias de retenção com base nos resultados obtidos.
+
