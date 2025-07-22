@@ -135,7 +135,7 @@ pytest
 
 [![EDA](reports/exploratory_analysis.png)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/exploratory_analysis.png)
 
-📘 Relatório completo: [[`report.md`](reports/report.md)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/report.md)
+📘 Relatório completo: [![report.md](reports/report.md)](https://github.com/MRCahu/telecom_churn_prediction/blob/main/telecom_churn_prediction_project/telecom_churn_prediction/reports/report.md)
 
 ---
 
