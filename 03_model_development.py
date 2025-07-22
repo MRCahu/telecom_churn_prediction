@@ -13,6 +13,9 @@ import numpy as np
 
 from src.utils import get_project_root
 
+reports_dir = get_project_root() / "reports"
+reports_dir.mkdir(parents=True, exist_ok=True)
+
 # Carregar os dados processados
 df = pd.read_csv(get_project_root() / "data" / "processed_data.csv")
 
@@ -41,7 +44,7 @@ pd.DataFrame({
     'fold': np.arange(1, len(baseline_scores) + 1),
     'f1_score': baseline_scores
 }).to_csv(
-    '/home/ubuntu/telecom_churn_prediction/reports/baseline_cv_scores.csv',
+    reports_dir / "baseline_cv_scores.csv",
     index=False)
 
 # GridSearchCV para otimização de hiperparâmetros da Regressão Logística
@@ -62,9 +65,9 @@ y_pred_log_reg = best_log_reg_model.predict(X_test)
 
 cv_results = pd.DataFrame(grid_search.cv_results_)
 cv_results.to_csv(
-    '/home/ubuntu/telecom_churn_prediction/reports/gridsearch_logistic_regression_results.csv',
+    reports_dir / "gridsearch_logistic_regression_results.csv",
     index=False)
-with open('/home/ubuntu/telecom_churn_prediction/reports/gridsearch_logistic_regression_best_params.json', 'w') as f:
+with open(reports_dir / "gridsearch_logistic_regression_best_params.json", 'w') as f:
     json.dump(grid_search.best_params_, f, indent=2)
 
 # Modelo Random Forest (não sensível à escala)
@@ -114,7 +117,7 @@ plt.ylabel('True Positive Rate')
 plt.title('Curvas ROC')
 plt.legend(loc='lower right')
 plt.tight_layout()
-plt.savefig('/home/ubuntu/telecom_churn_prediction/reports/roc_curves.png', dpi=300, bbox_inches='tight')
+plt.savefig(reports_dir / "roc_curves.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # Análise da importância das variáveis
@@ -177,7 +180,6 @@ models_comparison = pd.DataFrame({
 print(models_comparison)
 
 # Salvar os resultados
-reports_dir = get_project_root() / "reports"
 models_comparison.to_csv(reports_dir / "models_comparison.csv", index=False)
 log_reg_coef_sorted.to_csv(reports_dir / "logistic_regression_coefficients.csv", index=False)
 rf_importance_sorted.to_csv(reports_dir / "random_forest_importance.csv", index=False)
