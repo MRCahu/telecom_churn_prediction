@@ -98,7 +98,7 @@ evaluate_model("Random Forest", y_test, y_pred_rf)
 
 # Curvas ROC para comparar os modelos
 from sklearn.metrics import roc_curve, auc
-y_prob_log_reg = log_reg_model.predict_proba(X_test_scaled)[:, 1]
+y_prob_log_reg = best_log_reg_model.predict_proba(X_test)[:, 1]
 y_prob_rf = rf_model.predict_proba(X_test)[:, 1]
 fpr_log, tpr_log, _ = roc_curve(y_test, y_prob_log_reg)
 fpr_rf, tpr_rf, _ = roc_curve(y_test, y_prob_rf)
