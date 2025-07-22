@@ -1,40 +1,35 @@
 # Previsão de Churn na Telecom X
 
-Este projeto tem como objetivo desenvolver modelos de Machine Learning para prever a evasão (churn) de clientes da Telecom X. A análise e modelagem são baseadas em dados históricos de clientes, buscando identificar os principais fatores que influenciam o churn e propor estratégias de retenção.
+Este projeto tem como objetivo prever a evasão (churn) de clientes da Telecom X utilizando modelos de Machine Learning. O conjunto de dados `TelecomX_Data.json` possui informações de 7.267 clientes em formato JSON hierárquico que foram achatadas e tratadas para treinamento.
 
 ## Estrutura do Projeto
+- `data/`: dados brutos e processados
+- `notebooks/`: scripts para pré-processamento, análise e modelagem
+- `models/`: modelos treinados
+- `reports/`: relatórios e figuras gerados
 
-- `data/`: Contém os dados brutos e processados.
-- `notebooks/`: Scripts Python para pré-processamento, análise exploratória e desenvolvimento de modelos.
-- `models/`: Modelos de Machine Learning treinados (serão salvos aqui).
-- `reports/`: Relatórios, gráficos e resultados da análise e avaliação dos modelos.
+## Criação do Ambiente
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## Tecnologias Utilizadas
+## Execução
+Após ativar o ambiente, execute:
+```bash
+python notebooks/01_data_preprocessing.py   # processamento dos dados
+python notebooks/02_exploratory_analysis.py # análise exploratória
+python notebooks/03_model_development.py    # treinamento dos modelos
+pytest                                      # executa os testes (se houver)
+```
 
-- Python
-- Pandas (para manipulação de dados)
-- Scikit-learn (para Machine Learning)
-- Matplotlib e Seaborn (para visualização de dados)
+## Métricas Finais
+O melhor desempenho foi obtido com **Regressão Logística**, alcançando acurácia de **0.8010** e F1-Score de **0.5795** no conjunto de teste.
 
-## Como Executar o Projeto
+## Figuras Principais
+![Matriz de Confusão](telecom_churn_prediction_project/telecom_churn_prediction/reports/confusion_matrix_Regressão_Logística.png)
 
-1. Clone este repositório:
-   `git clone <URL_DO_REPOSITORIO>`
-2. Navegue até o diretório do projeto:
-   `cd telecom_churn_prediction`
-3. Instale as dependências (se necessário):
-   `pip install -r requirements.txt` (o arquivo `requirements.txt` será criado posteriormente)
-4. Execute os scripts na ordem:
-   - `notebooks/01_data_preprocessing.py`
-   - `notebooks/02_exploratory_analysis.py`
-   - `notebooks/03_model_development.py`
+![Importância das Features](telecom_churn_prediction_project/telecom_churn_prediction/reports/feature_importance.png)
 
-## Resultados e Análises
-
-Os resultados detalhados da análise exploratória, avaliação dos modelos e importância das variáveis podem ser encontrados no `reports/report.md`.
-
-## Contato
-
-Para dúvidas ou sugestões, entre em contato.
-
-
+Consulte `reports/report.md` para análise completa e mais resultados.
